@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         try! Pam.initialize()
         
+        sleep(3)
+        
         return true
     }
     

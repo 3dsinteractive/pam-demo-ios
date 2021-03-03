@@ -1,24 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="pam_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="lightbg" translatesAutoresizingMaskIntoConstraints="NO" id="PmD-Ub-MPv">
+                                <rect key="frame" x="0.0" y="9" width="414" height="887"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="logo-text" translatesAutoresizingMaskIntoConstraints="NO" id="c7f-5r-UCK">
+                                <rect key="frame" x="101" y="99" width="212" height="65"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="profile2" translatesAutoresizingMaskIntoConstraints="NO" id="rw8-Ob-SLp">
+                                <rect key="frame" x="184" y="395" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="profile3" translatesAutoresizingMaskIntoConstraints="NO" id="gY4-gs-2kF">
+                                <rect key="frame" x="75" y="576" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" ambiguous="YES" image="profile1" translatesAutoresizingMaskIntoConstraints="NO" id="B6n-Lv-2U0">
+                                <rect key="frame" x="31" y="208" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="kg7-AR-wRz"/>
+                                    <constraint firstAttribute="height" constant="90" id="o5P-gB-xI1"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="c7f-5r-UCK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="55" id="0ig-nw-2zE"/>
+                            <constraint firstAttribute="bottom" secondItem="PmD-Ub-MPv" secondAttribute="bottom" id="UlM-b8-xDC"/>
+                            <constraint firstItem="c7f-5r-UCK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c9H-lb-CWd"/>
+                            <constraint firstItem="PmD-Ub-MPv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jXb-hi-HSh"/>
+                            <constraint firstItem="PmD-Ub-MPv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="9" id="rpP-z9-81r"/>
+                            <constraint firstAttribute="trailing" secondItem="PmD-Ub-MPv" secondAttribute="trailing" id="xHk-99-b97"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-217.39130434782609" y="39.508928571428569"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lightbg" width="390" height="844"/>
+        <image name="logo-text" width="211.5" height="64.5"/>
+        <image name="profile1" width="150" height="150"/>
+        <image name="profile2" width="150" height="150"/>
+        <image name="profile3" width="150" height="150"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
