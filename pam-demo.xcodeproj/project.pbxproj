@@ -13,6 +13,8 @@
 		3E3FA39A25EE052700A5541F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E3FA39825EE052700A5541F /* Main.storyboard */; };
 		3E3FA39C25EE052A00A5541F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E3FA39B25EE052A00A5541F /* Assets.xcassets */; };
 		3E3FA39F25EE052A00A5541F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E3FA39D25EE052A00A5541F /* LaunchScreen.storyboard */; };
+		3E3FA3A925EE05C400A5541F /* Pam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FA3A825EE05C400A5541F /* Pam.swift */; };
+		3E3FA3B025EE089400A5541F /* pam-config.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E3FA3AC25EE063C00A5541F /* pam-config.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,9 @@
 		3E3FA39B25EE052A00A5541F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E3FA39E25EE052A00A5541F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E3FA3A025EE052A00A5541F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E3FA3A825EE05C400A5541F /* Pam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pam.swift; sourceTree = "<group>"; };
+		3E3FA3AC25EE063C00A5541F /* pam-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "pam-config.json"; sourceTree = "<group>"; };
+		3E3FA3B325EE0EF800A5541F /* pam-demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "pam-demo.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +61,8 @@
 		3E3FA39125EE052700A5541F /* pam-demo */ = {
 			isa = PBXGroup;
 			children = (
+				3E3FA3B325EE0EF800A5541F /* pam-demo.entitlements */,
+				3E3FA3A725EE053C00A5541F /* pam-swift */,
 				3E3FA39225EE052700A5541F /* AppDelegate.swift */,
 				3E3FA39425EE052700A5541F /* SceneDelegate.swift */,
 				3E3FA39625EE052700A5541F /* ViewController.swift */,
@@ -63,8 +70,17 @@
 				3E3FA39B25EE052A00A5541F /* Assets.xcassets */,
 				3E3FA39D25EE052A00A5541F /* LaunchScreen.storyboard */,
 				3E3FA3A025EE052A00A5541F /* Info.plist */,
+				3E3FA3AC25EE063C00A5541F /* pam-config.json */,
 			);
 			path = "pam-demo";
+			sourceTree = "<group>";
+		};
+		3E3FA3A725EE053C00A5541F /* pam-swift */ = {
+			isa = PBXGroup;
+			children = (
+				3E3FA3A825EE05C400A5541F /* Pam.swift */,
+			);
+			path = "pam-swift";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E3FA3B025EE089400A5541F /* pam-config.json in Resources */,
 				3E3FA39F25EE052A00A5541F /* LaunchScreen.storyboard in Resources */,
 				3E3FA39C25EE052A00A5541F /* Assets.xcassets in Resources */,
 				3E3FA39A25EE052700A5541F /* Main.storyboard in Resources */,
@@ -139,6 +156,7 @@
 			files = (
 				3E3FA39725EE052700A5541F /* ViewController.swift in Sources */,
 				3E3FA39325EE052700A5541F /* AppDelegate.swift in Sources */,
+				3E3FA3A925EE05C400A5541F /* Pam.swift in Sources */,
 				3E3FA39525EE052700A5541F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,7 +304,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "pam-demo/pam-demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5PN9LL8N5M;
 				INFOPLIST_FILE = "pam-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -304,7 +324,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "pam-demo/pam-demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5PN9LL8N5M;
 				INFOPLIST_FILE = "pam-demo/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

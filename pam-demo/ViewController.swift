@@ -11,7 +11,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+       
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Pam.askNotificationPermission(mediaAlias: "ios-noti", options:  [.alert, .sound, .badge])
+       
+        
+        Pam.track(event: "pageview", payload: ["pageName":"test"])
     }
 
 
