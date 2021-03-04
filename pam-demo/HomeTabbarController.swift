@@ -12,8 +12,6 @@ class HomeTabbarController: UITabBarController {
     override func viewDidLoad() {
         overrideUserInterfaceStyle = .light
         
-        navigationController?.title = "boodaBEST"
-        
         var controller:[UIViewController] = []
         
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -40,5 +38,15 @@ class HomeTabbarController: UITabBarController {
         }
         
         viewControllers = controller
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool){
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }

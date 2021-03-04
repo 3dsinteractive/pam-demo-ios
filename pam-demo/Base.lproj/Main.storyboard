@@ -154,7 +154,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="O1z-og-rRg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewLayout key="collectionViewLayout" id="1u4-Sl-dzK" customClass="PinterestLayout" customModule="pam_demo" customModuleProvider="target"/>
                                 <cells>
@@ -212,7 +212,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="QgB-k8-c5A" secondAttribute="bottom" id="3UX-OY-WCd"/>
-                            <constraint firstItem="O1z-og-rRg" firstAttribute="top" secondItem="Qls-fq-OZB" secondAttribute="top" id="9Hb-gV-7PZ"/>
+                            <constraint firstItem="O1z-og-rRg" firstAttribute="top" secondItem="yBz-0S-1dd" secondAttribute="top" id="9Hb-gV-7PZ"/>
                             <constraint firstAttribute="trailing" secondItem="QgB-k8-c5A" secondAttribute="trailing" id="C9c-hl-3Cy"/>
                             <constraint firstItem="Qls-fq-OZB" firstAttribute="trailing" secondItem="O1z-og-rRg" secondAttribute="trailing" id="NAO-56-nCT"/>
                             <constraint firstItem="QgB-k8-c5A" firstAttribute="top" secondItem="yBz-0S-1dd" secondAttribute="top" id="lNm-Vo-N5n"/>

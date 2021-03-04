@@ -11,5 +11,6 @@ class FavoriteViewController: UIViewController {
     func initView() {
         tabBarItem.title = "Favorite"
         tabBarItem.image = UIImage(named: "favorite_icon")
+        navigationController?.title = "Favorite"
     }
 }
