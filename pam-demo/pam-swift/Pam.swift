@@ -35,7 +35,8 @@ struct PamConfig: Codable {
 
 class Pam{
     
-    static var config: PamConfig?
+    private static var config: PamConfig?
+    private static var custID: String?
     
     static func initialize() throws {
         if let filepath = Bundle.main.path(forResource: "pam-config", ofType: "json") {
@@ -72,12 +73,41 @@ class Pam{
         HttpClient.post(url: url, queryString: nil, headers: nil, json: payload)
     }
     
+    static func userLogin(custID: String){
+        saveValue(value:custID, key: "cust_id")
+        Pam.custID = custID
+        let payLoad = [
+            "customer": custID
+        ]
+        Pam.track(event: "login", payload: payLoad)
+    }
+    
+    static func userLogout(){
+        custID  = nil
+        removeValue(key: "cust_id")
+        Pam.track(event: "logout")
+    }
+    
     static func setPushNotification(userInfo:[AnyHashable : Any], completionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool{
-        if let info = userInfo["pam"] {
+        //if let info = userInfo["pam"] {
             completionHandler(.newData)
             return true
-        }
-        return false
+        //}
+        //return false
+    }
+    
+    private static func saveValue(value: String, key: String){
+        let defaults = UserDefaults.standard
+        defaults.set(value, forKey: key)
+        defaults.synchronize()
+    }
+    
+    private static func readValue(key: String)-> String?{
+        return UserDefaults.standard.string(forKey: key)
+    }
+    
+    private static func removeValue(key: String){
+        UserDefaults.standard.removeObject(forKey: key)
     }
     
     static func setDeviceToken(deviceToken:Data) -> String{
@@ -90,8 +120,7 @@ class Pam{
         let saveToken = token
         #endif
         
-        Pam.track(event: "save_roken", payload: ["ios_notification":saveToken])
-        
+        Pam.track(event: "save_push", payload: ["ios_notification":saveToken])
         return token
     }
 }
@@ -117,8 +146,10 @@ class HttpClient {
             request.addValue($0.value, forHTTPHeaderField: $0.key)
         }
         
-        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: [])
-
+        if let json = json {
+            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: [])
+        }
+        
         let session = URLSession.shared
         session.dataTask(with: request) { data, response, error in
             if error == nil, let data = data{
