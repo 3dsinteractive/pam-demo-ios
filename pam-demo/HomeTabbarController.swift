@@ -12,6 +12,8 @@ class HomeTabbarController: UITabBarController {
     override func viewDidLoad() {
         overrideUserInterfaceStyle = .light
         
+        navigationController?.title = "boodaBEST"
+        
         var controller:[UIViewController] = []
         
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
