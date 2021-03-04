@@ -49,6 +49,8 @@ class ProfileViewController: UIViewController{
     
     @IBAction func clickLogout(_ sender: Any) {
         if let vc = storyboard?.instantiateViewController(identifier: "LoginViewController") as? LoginViewController {
+            
+            Pam.userLogout()
             navigationController?.setViewControllers([vc], animated: true)
         }
     }
