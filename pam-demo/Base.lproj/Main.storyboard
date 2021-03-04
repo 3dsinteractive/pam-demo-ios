@@ -373,7 +373,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3b-GZ-zmC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1033.3333333333335" y="1599.7767857142856"/>
+            <point key="canvasLocation" x="-917" y="1639"/>
         </scene>
         <!--Profile-->
         <scene sceneID="K4t-Ln-zU6">
@@ -536,6 +536,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EFc-xT-zlF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="467" y="92"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="uwT-aT-vQa">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteViewController" id="9TG-cr-UBC" customClass="FavoriteViewController" customModule="pam_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lKu-VX-wrA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="lightbg" translatesAutoresizingMaskIntoConstraints="NO" id="eck-fA-PKt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fgh-KE-c74"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eck-fA-PKt" secondAttribute="trailing" id="3xs-7O-JAs"/>
+                            <constraint firstItem="eck-fA-PKt" firstAttribute="leading" secondItem="lKu-VX-wrA" secondAttribute="leading" id="DcB-af-L9d"/>
+                            <constraint firstAttribute="bottom" secondItem="eck-fA-PKt" secondAttribute="bottom" id="LiJ-zc-Uw9"/>
+                            <constraint firstItem="eck-fA-PKt" firstAttribute="top" secondItem="lKu-VX-wrA" secondAttribute="top" id="ykZ-O6-fSf"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="KZ5-A9-Zv9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="raT-fM-NLF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="664" y="877"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="JDS-iw-q2q">
+            <objects>
+                <viewController storyboardIdentifier="ShoppingCartViewController" id="xEO-Y8-QT1" customClass="ShoppingCartViewController" customModule="pam_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="azt-vT-Cfs">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="lightbg" translatesAutoresizingMaskIntoConstraints="NO" id="Yww-1f-YGO">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="i5O-vd-1Gv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Yww-1f-YGO" firstAttribute="leading" secondItem="azt-vT-Cfs" secondAttribute="leading" id="05V-V2-HTi"/>
+                            <constraint firstAttribute="trailing" secondItem="Yww-1f-YGO" secondAttribute="trailing" id="H3c-9p-gkT"/>
+                            <constraint firstItem="Yww-1f-YGO" firstAttribute="top" secondItem="azt-vT-Cfs" secondAttribute="top" id="Vah-lX-wxS"/>
+                            <constraint firstAttribute="bottom" secondItem="Yww-1f-YGO" secondAttribute="bottom" id="VmE-S7-ss7"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="MIX-GO-K2k"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zug-Eu-ScZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1432" y="877"/>
         </scene>
     </scenes>
     <resources>

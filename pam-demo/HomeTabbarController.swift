@@ -18,13 +18,25 @@ class HomeTabbarController: UITabBarController {
         
         let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
         
-        if let home = storyBoard.instantiateViewController(identifier: "ProductsListViewController") as? ProductsListViewController {
-            controller.append(home)
+        if let vc = storyBoard.instantiateViewController(identifier: "ProductsListViewController") as? ProductsListViewController {
+            controller.append(vc)
         }
         
-        if let profile = storyBoard.instantiateViewController(identifier: "ProfileViewController") as? ProfileViewController {
-            profile.initView()
-            controller.append(profile)
+        if AppData.main.loginUser != nil {
+            if let vc = storyBoard.instantiateViewController(identifier: "FavoriteViewController") as? FavoriteViewController {
+                vc.initView()
+                controller.append(vc)
+            }
+            
+            if let vc = storyBoard.instantiateViewController(identifier: "ShoppingCartViewController") as? ShoppingCartViewController {
+                vc.initView()
+                controller.append(vc)
+            }
+        }
+        
+        if let vc = storyBoard.instantiateViewController(identifier: "ProfileViewController") as? ProfileViewController {
+            vc.initView()
+            controller.append(vc)
         }
         
         viewControllers = controller
