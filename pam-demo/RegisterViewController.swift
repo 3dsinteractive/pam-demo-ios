@@ -25,16 +25,16 @@ class RegisterViewController: UIViewController {
     @objc func clickEmail() {
         let alert = UIAlertController(title: "Register With Email", message: "Select an email you want to register.", preferredStyle: .actionSheet)
         
-        let mail1 = UIAlertAction(title: "a.email@pams.ai", style: .default, handler: {_ in
-            self.emailField.text = "a.email@pams.ai"
+        let mail1 = UIAlertAction(title: "a@a.com", style: .default, handler: {_ in
+            self.emailField.text = "a@a.com"
         })
         
-        let mail2 = UIAlertAction(title: "b.email@pams.ai", style: .default, handler: {_ in
-            self.emailField.text = "b.email@pams.ai"
+        let mail2 = UIAlertAction(title: "b@b.com", style: .default, handler: {_ in
+            self.emailField.text = "b@b.com"
         })
         
-        let mail3 = UIAlertAction(title: "c.email@pams.ai", style: .default, handler: {_ in
-            self.emailField.text = "c.email@pams.ai"
+        let mail3 = UIAlertAction(title: "c@c.com", style: .default, handler: {_ in
+            self.emailField.text = "c@c.com"
         })
         
         alert.addAction(mail1)

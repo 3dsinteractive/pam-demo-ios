@@ -27,6 +27,9 @@ class MockAPI {
     }
     
     
+    func getProducts() -> [ProductModel]{
+        return products
+    }
     
 }
 

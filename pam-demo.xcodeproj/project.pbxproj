@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,10 @@
 		3E34D99725F11D8B00BCE79D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34D99625F11D8B00BCE79D /* UserModel.swift */; };
 		3E34D99B25F11DCF00BCE79D /* MockAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34D99A25F11DCF00BCE79D /* MockAPI.swift */; };
 		3E34D99E25F11E8A00BCE79D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34D99D25F11E8A00BCE79D /* MockData.swift */; };
+		3E34D9A225F12F1500BCE79D /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34D9A125F12F1500BCE79D /* ProductModel.swift */; };
+		3E34D9A625F135D700BCE79D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34D9A525F135D700BCE79D /* ProductCell.swift */; };
+		3E34D9AC25F1381000BCE79D /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 3E34D9AB25F1381000BCE79D /* Nuke */; };
+		3E34D9AF25F13B7C00BCE79D /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E34D9AE25F13B7B00BCE79D /* PinterestLayout.swift */; };
 		3E3FA39325EE052700A5541F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FA39225EE052700A5541F /* AppDelegate.swift */; };
 		3E3FA39525EE052700A5541F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FA39425EE052700A5541F /* SceneDelegate.swift */; };
 		3E3FA39725EE052700A5541F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FA39625EE052700A5541F /* LoginViewController.swift */; };
@@ -40,6 +44,9 @@
 		3E34D99625F11D8B00BCE79D /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		3E34D99A25F11DCF00BCE79D /* MockAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPI.swift; sourceTree = "<group>"; };
 		3E34D99D25F11E8A00BCE79D /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		3E34D9A125F12F1500BCE79D /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		3E34D9A525F135D700BCE79D /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		3E34D9AE25F13B7B00BCE79D /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		3E3FA38F25EE052700A5541F /* pam-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pam-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3FA39225EE052700A5541F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E3FA39425EE052700A5541F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E34D9AC25F1381000BCE79D /* Nuke in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +85,7 @@
 			children = (
 				3E34D99325F11D5A00BCE79D /* AppData.swift */,
 				3E34D99625F11D8B00BCE79D /* UserModel.swift */,
+				3E34D9A125F12F1500BCE79D /* ProductModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -88,6 +97,16 @@
 				3E34D99D25F11E8A00BCE79D /* MockData.swift */,
 			);
 			path = webservice;
+			sourceTree = "<group>";
+		};
+		3E34D9A425F135CB00BCE79D /* ProductList */ = {
+			isa = PBXGroup;
+			children = (
+				3EE3C65525F0D7A300A115D2 /* ProductsListViewController.swift */,
+				3E34D9A525F135D700BCE79D /* ProductCell.swift */,
+				3E34D9AE25F13B7B00BCE79D /* PinterestLayout.swift */,
+			);
+			path = ProductList;
 			sourceTree = "<group>";
 		};
 		3E3FA38625EE052700A5541F = {
@@ -116,7 +135,7 @@
 				3E34D98C25F118C100BCE79D /* HomeTabbarController.swift */,
 				3E3FA39625EE052700A5541F /* LoginViewController.swift */,
 				3E34D98825F10EE500BCE79D /* MainNavigationController.swift */,
-				3EE3C65525F0D7A300A115D2 /* ProductsListViewController.swift */,
+				3E34D9A425F135CB00BCE79D /* ProductList */,
 				3E34D98F25F11BBE00BCE79D /* ProfileViewController.swift */,
 				3EE3C65225F0D33F00A115D2 /* RegisterViewController.swift */,
 				3E3FA39425EE052700A5541F /* SceneDelegate.swift */,
@@ -168,6 +187,9 @@
 			dependencies = (
 			);
 			name = "pam-demo";
+			packageProductDependencies = (
+				3E34D9AB25F1381000BCE79D /* Nuke */,
+			);
 			productName = "pam-demo";
 			productReference = 3E3FA38F25EE052700A5541F /* pam-demo.app */;
 			productType = "com.apple.product-type.application";
@@ -195,6 +217,9 @@
 				Base,
 			);
 			mainGroup = 3E3FA38625EE052700A5541F;
+			packageReferences = (
+				3E34D9AA25F1380F00BCE79D /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			productRefGroup = 3E3FA39025EE052700A5541F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,12 +259,15 @@
 				3EE3C65325F0D33F00A115D2 /* RegisterViewController.swift in Sources */,
 				3E34D99E25F11E8A00BCE79D /* MockData.swift in Sources */,
 				3EE3C65625F0D7A300A115D2 /* ProductsListViewController.swift in Sources */,
+				3E34D9A225F12F1500BCE79D /* ProductModel.swift in Sources */,
 				3E34D99B25F11DCF00BCE79D /* MockAPI.swift in Sources */,
 				3E3FA39325EE052700A5541F /* AppDelegate.swift in Sources */,
 				3E3FA3A925EE05C400A5541F /* Pam.swift in Sources */,
 				3E34D99025F11BBE00BCE79D /* ProfileViewController.swift in Sources */,
 				3E34D98D25F118C100BCE79D /* HomeTabbarController.swift in Sources */,
 				3E3FA39525EE052700A5541F /* SceneDelegate.swift in Sources */,
+				3E34D9AF25F13B7C00BCE79D /* PinterestLayout.swift in Sources */,
+				3E34D9A625F135D700BCE79D /* ProductCell.swift in Sources */,
 				3E34D99425F11D5A00BCE79D /* AppData.swift in Sources */,
 				3E34D99725F11D8B00BCE79D /* UserModel.swift in Sources */,
 			);
@@ -445,6 +473,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3E34D9AA25F1380F00BCE79D /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3E34D9AB25F1381000BCE79D /* Nuke */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3E34D9AA25F1380F00BCE79D /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = Nuke;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E3FA38725EE052700A5541F /* Project object */;
 }
