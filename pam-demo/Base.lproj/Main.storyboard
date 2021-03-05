@@ -710,7 +710,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="lightbg" translatesAutoresizingMaskIntoConstraints="NO" id="Yww-1f-YGO">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Ck-n7-Dcb">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Ck-n7-Dcb">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -791,6 +791,12 @@
                                     <action selector="clickPayNow:" destination="xEO-Y8-QT1" eventType="touchUpInside" id="UFj-cp-JAW"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uJk-Xl-8eb">
+                                <rect key="frame" x="141.5" y="364" width="131" height="34"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xea-KO-1H6">
                                 <rect key="frame" x="0.0" y="762" width="414" height="50"/>
                                 <subviews>
@@ -822,10 +828,12 @@
                         <constraints>
                             <constraint firstItem="Yww-1f-YGO" firstAttribute="leading" secondItem="azt-vT-Cfs" secondAttribute="leading" id="05V-V2-HTi"/>
                             <constraint firstItem="Xea-KO-1H6" firstAttribute="top" secondItem="8Ck-n7-Dcb" secondAttribute="bottom" id="4OY-iq-NZ7"/>
+                            <constraint firstItem="uJk-Xl-8eb" firstAttribute="centerY" secondItem="8Ck-n7-Dcb" secondAttribute="centerY" id="4eC-kp-B8E"/>
                             <constraint firstItem="i5O-vd-1Gv" firstAttribute="bottom" secondItem="beU-Om-LhC" secondAttribute="bottom" id="4tm-wi-iLe"/>
                             <constraint firstItem="8Ck-n7-Dcb" firstAttribute="leading" secondItem="i5O-vd-1Gv" secondAttribute="leading" id="DFk-qh-5cH"/>
                             <constraint firstAttribute="trailing" secondItem="Yww-1f-YGO" secondAttribute="trailing" id="H3c-9p-gkT"/>
                             <constraint firstItem="i5O-vd-1Gv" firstAttribute="trailing" secondItem="8Ck-n7-Dcb" secondAttribute="trailing" id="Ifc-dz-s0Y"/>
+                            <constraint firstItem="uJk-Xl-8eb" firstAttribute="centerX" secondItem="8Ck-n7-Dcb" secondAttribute="centerX" id="RrU-3X-biu"/>
                             <constraint firstItem="Yww-1f-YGO" firstAttribute="top" secondItem="azt-vT-Cfs" secondAttribute="top" id="Vah-lX-wxS"/>
                             <constraint firstAttribute="bottom" secondItem="Yww-1f-YGO" secondAttribute="bottom" id="VmE-S7-ss7"/>
                             <constraint firstItem="beU-Om-LhC" firstAttribute="top" secondItem="Xea-KO-1H6" secondAttribute="bottom" id="fkP-tg-hMg"/>
@@ -838,6 +846,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" id="MIX-GO-K2k"/>
                     <connections>
+                        <outlet property="emptyCartText" destination="uJk-Xl-8eb" id="OBW-O1-N6n"/>
                         <outlet property="tableView" destination="8Ck-n7-Dcb" id="son-8v-BrP"/>
                         <outlet property="totalPriceText" destination="cec-S4-z9t" id="61n-SW-6h9"/>
                     </connections>

@@ -11,6 +11,7 @@ import Nuke
 class ShoppingCartViewController: UIViewController {
     
     
+    @IBOutlet weak var emptyCartText: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPriceText: UILabel!
     
@@ -42,6 +43,12 @@ class ShoppingCartViewController: UIViewController {
         totalPriceText.text = "฿ \(total)"
         
         tableView.reloadData()
+        
+        if cart.count < 1 {
+            emptyCartText.isHidden = false
+        }else{
+            emptyCartText.isHidden = true
+        }
     }
     
     
