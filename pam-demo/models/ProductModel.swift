@@ -11,4 +11,7 @@ struct ProductModel {
     let price: Int
     let description: String
     let productID: String
+    var isFavorite: Bool
+    var quantity: Int = 0
 }
+

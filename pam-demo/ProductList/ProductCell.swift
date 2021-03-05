@@ -13,6 +13,8 @@ class ProductCell: UICollectionViewCell{
     @IBOutlet weak var productImage: UIImageView!
     @IBOutlet weak var productPrice: UILabel!
     
+    @IBOutlet weak var favIcon: UIImageView!
+    
     func setData(product: ProductModel?)  {
         if let url = URL(string: product?.image ?? ""){
             let req = ImageRequest(url: url)
@@ -23,6 +25,12 @@ class ProductCell: UICollectionViewCell{
             productPrice.text = "฿ \(priceText)"
         }else{
             productPrice.text = "-"
+        }
+        
+        if product?.isFavorite == true{
+            favIcon.isHidden = false
+        }else{
+            favIcon.isHidden = true
         }
     }
 }

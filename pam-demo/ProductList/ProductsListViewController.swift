@@ -12,7 +12,7 @@ class ProductsListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var products: [ProductModel]?
-    
+   
     override func viewDidLoad() {
         
         overrideUserInterfaceStyle = .light
@@ -34,6 +34,19 @@ class ProductsListViewController: UIViewController {
         collectionView.dataSource = self
         
         setLoginBarItem()
+        NotificationCenter.default.addObserver(self, selector: #selector(onReloadProduct), name: NSNotification.Name(rawValue: "favoriteChange"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadProducts()
+    }
+    
+    func initView() {
+        tabBarItem.image = UIImage(named: "home_icon")
+        tabBarItem?.title = "Home"
+    }
+    
+    @objc func onReloadProduct(){
         loadProducts()
     }
     
@@ -49,9 +62,7 @@ class ProductsListViewController: UIViewController {
         products = MockAPI.main.getProducts()
         collectionView.reloadData()
     }
-    
 }
-
 
 extension ProductsListViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,6 +78,15 @@ extension ProductsListViewController: UICollectionViewDelegate, UICollectionView
         }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let product = products?[indexPath.row] {
+            if let vc = storyboard?.instantiateViewController(identifier: "ProductDetailViewController") as? ProductDetailViewController {
+                vc.setProduct(product: product)
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     
