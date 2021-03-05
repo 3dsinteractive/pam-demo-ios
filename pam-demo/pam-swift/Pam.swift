@@ -38,6 +38,11 @@ class Pam{
     private static var config: PamConfig?
     private static var custID: String?
     private static var contactID:String?
+    private static var isEnableLog = false
+    
+    static func enableLog(){
+        isEnableLog = true
+    }
     
     static func initialize() throws {
         if let filepath = Bundle.main.path(forResource: "pam-config", ofType: "json") {
@@ -46,6 +51,12 @@ class Pam{
                 Pam.config = try JSONDecoder().decode(PamConfig.self, from: contents.data(using: .utf8)!)
                 if Pam.config?.pamServer.hasSuffix("/") ?? false {
                     Pam.config?.pamServer.removeLast()
+                }
+                
+                if isEnableLog {
+                    print("🦄 PAM :  initialize pamServer =", Pam.config?.pamServer ?? "")
+                    print("🦄 PAM :  initialize loginDBAlias =", Pam.config?.loginDBAlias ?? "")
+                    print("🦄 PAM :  initialize publicDBAlias =", Pam.config?.publicDBAlias ?? "")
                 }
             } catch {
                 throw RuntimeError("PAM Error!! Invalid JSON Format 'pam-config.json' \(error)")
@@ -56,10 +67,16 @@ class Pam{
     }
     
     static func askNotificationPermission(mediaAlias: String, options: UNAuthorizationOptions){
+        if isEnableLog {
+            print("🦄 PAM :  askNotificationPermission")
+        }
+        
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: options) { granted, error in
             if let error = error {
-                print(error)
+                if isEnableLog {
+                    print("🦄 PAM :  askNotificationPermission", error)
+                }
             }else{
                 DispatchQueue.main.async {
                     UIApplication.shared.registerForRemoteNotifications()
@@ -73,7 +90,8 @@ class Pam{
         
         var body:[String:Any] = [
             "event":event,
-            "platform": Pam.osVersion,
+            "platform": "iOS",
+            "os_version": Pam.osVersion,
             "app_version": Pam.versionBuild,
             "form_fields": []
         ]
@@ -100,19 +118,38 @@ class Pam{
         }
         
         body["form_fields"] = formField
+        
+        if isEnableLog {
+            if let bodyData = try? JSONSerialization.data(withJSONObject: body, options: []) {
+                print("🦄 PAM :  Post Tracking Event=\(event) payload=", String(data: bodyData, encoding: .utf8) ?? "nil")
+            }
+        }
             
         HttpClient.post(url: url, queryString: nil, headers: nil, json: payload){
             if let contactID = $0?["contact_id"] as? String{
+                
+                if isEnableLog {
+                    print("🦄 PAM :  Received Contact ID=", contactID)
+                }
+                
                 let oldContactID = self.contactID ?? "-"
                 if oldContactID != contactID {
                     self.contactID = contactID
                     saveValue(value: "contact_id", key: contactID)
+                    if isEnableLog {
+                        print("🦄 PAM :  Replace Old Contact ID='\(oldContactID)' with new contact ID='\(contactID)'")
+                    }
                 }
             }
         }
     }
     
     static func userLogin(custID: String){
+        
+        if isEnableLog {
+            print("🦄 PAM :  Login customer ID=\(custID)")
+        }
+        
         saveValue(value:custID, key: "cust_id")
         Pam.custID = custID
         let payLoad = [
@@ -122,6 +159,9 @@ class Pam{
     }
     
     static func userLogout(){
+        if isEnableLog {
+            print("🦄 PAM :  Logout")
+        }
         custID  = nil
         removeValue(key: "cust_id")
         Pam.track(event: "logout")
@@ -160,6 +200,11 @@ class Pam{
         #endif
         
         Pam.track(event: "save_push", payload: ["ios_notification":saveToken])
+        
+        if isEnableLog {
+            print("🦄 PAM :  Save Push Notification Token=\(saveToken)")
+        }
+        
         return token
     }
 }

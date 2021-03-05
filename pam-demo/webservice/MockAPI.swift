@@ -73,7 +73,7 @@ class MockAPI {
             }
         }
         if foundAt == -1 {
-            let p = ProductModel(image: product.image, title: product.title, price: product.price, description: product.description, productID: product.productID, isFavorite: product.isFavorite, quantity: 1)
+            let p = ProductModel(image: product.image, title: product.title, price: product.price, description: product.description, productID: product.productID, isFavorite: product.isFavorite, quantity: 1, category: product.category)
             cart.append(p)
         }else{
             cart[foundAt].quantity += 1
