@@ -48,7 +48,7 @@ class PaymentViewColtroller: UIViewController {
     }
     
     @IBAction func clickPay(_ sender: Any) {
-        print("PAY")
+        trackPurchase()
         MockAPI.main.pay()
         
         let alert = UIAlertController.init(title: "Success!", message: "Thankyou for your order.", preferredStyle: .alert)
@@ -61,4 +61,34 @@ class PaymentViewColtroller: UIViewController {
         present(alert, animated: true)
     }
     
+    func trackPurchase() {
+        let cart = MockAPI.main.getCart()
+        let productIDList = cart.map{
+            $0.productID
+        }.reduce(""){ res, pid in
+            if res == "" {
+                return pid
+            }
+            return "\(res),\(pid)"
+        }
+        
+        
+        let categoryList = cart.map{
+            $0.category
+        }.reduce(""){ res, pid in
+            if res == "" {
+                return pid
+            }
+            return "\(res),\(pid)"
+        }
+        
+        let totalPrice = cart.map{
+            $0.price * $0.quantity
+        }.reduce(0){ total, num in
+            return total + num
+        }
+        
+        Pam.track(event: "purchase_success", payload: ["product_id":productIDList, "product_cat": categoryList, "total_price": totalPrice])
+        
+    }
 }

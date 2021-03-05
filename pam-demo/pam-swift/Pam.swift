@@ -37,6 +37,7 @@ class Pam{
     
     private static var config: PamConfig?
     private static var custID: String?
+    private static var contactID:String?
     
     static func initialize() throws {
         if let filepath = Bundle.main.path(forResource: "pam-config", ofType: "json") {
@@ -70,7 +71,45 @@ class Pam{
     static func track(event:String, payload: [String:Any]? = nil){
         let url = (Pam.config?.pamServer ?? "") + "/trackers/events"
         
-        HttpClient.post(url: url, queryString: nil, headers: nil, json: payload)
+        var body:[String:Any] = [
+            "event":event,
+            "platform": Pam.osVersion,
+            "app_version": Pam.versionBuild,
+            "form_fields": []
+        ]
+        
+        var formField:[String:Any] = [:]
+        
+        if contactID == nil {
+            if let contact = readValue(key: "contact_id") {
+                contactID = contact
+                formField["_contact_id"] = contactID
+            }
+        }else{
+            formField["_contact_id"] = contactID
+        }
+        
+        payload?.forEach{
+            formField[$0.key] = $0.value
+        }
+        
+        if Pam.custID == nil {
+            formField["_database"] = Pam.config?.publicDBAlias ?? ""
+        }else{
+            formField["_database"] = Pam.config?.loginDBAlias ?? ""
+        }
+        
+        body["form_fields"] = formField
+            
+        HttpClient.post(url: url, queryString: nil, headers: nil, json: payload){
+            if let contactID = $0?["contact_id"] as? String{
+                let oldContactID = self.contactID ?? "-"
+                if oldContactID != contactID {
+                    self.contactID = contactID
+                    saveValue(value: "contact_id", key: contactID)
+                }
+            }
+        }
     }
     
     static func userLogin(custID: String){
@@ -127,8 +166,9 @@ class Pam{
 
 
 class HttpClient {
+    typealias OnSuccess = ([String: Any]?)->Void
     
-    static func post(url:String, queryString: [String:String]?, headers:[String:String]?, json: [String: Any]?){
+    static func post(url:String, queryString: [String:String]?, headers:[String:String]?, json: [String: Any]?, onSuccess: OnSuccess?){
         guard var url = URLComponents(string: url) else {return}
         url.queryItems = []
         queryString?.forEach{
@@ -153,12 +193,32 @@ class HttpClient {
         let session = URLSession.shared
         session.dataTask(with: request) { data, response, error in
             if error == nil, let data = data{
-                if let json = String(data: data, encoding: .utf8){
-                    print(json)
-                }
+                let resultDictionay = try? JSONSerialization.jsonObject(with: data, options: []) as?  [String: Any]
+                onSuccess?(resultDictionay)
             }
         }.resume()
         
     }
     
+}
+
+extension Pam {
+
+    static var appVersion: String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    }
+
+    static var appBuild: String {
+        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+    }
+
+    static var versionBuild: String {
+        let version = appVersion, build = appBuild
+        return version == build ? "v\(version)" : "v\(version)(\(build))"
+    }
+    
+    static var osVersion: String {
+        let version = ProcessInfo().operatingSystemVersion
+        return "\(version.majorVersion).\(version.minorVersion).\(version.patchVersion)"
+    }
 }

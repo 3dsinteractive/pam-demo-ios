@@ -28,6 +28,7 @@ class ProductFavoriteCell: UITableViewCell{
         MockAPI.main.setFavorite(isFav: fav, productID: productID)
         setFavIcon()
         
+        Pam.track(event: "favorite", payload: ["product_id": productID])
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "favoriteChange"), object: nil)
     }
     

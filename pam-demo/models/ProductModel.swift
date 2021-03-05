@@ -13,5 +13,6 @@ struct ProductModel {
     let productID: String
     var isFavorite: Bool
     var quantity: Int = 0
+    var category: String
 }
 

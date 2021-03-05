@@ -30,10 +30,15 @@ class ProductDetailViewController: UIViewController{
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 300
+        
+        
+        
     }
     
     func setProduct(product:ProductModel) {
         self.product = product
+        
+        Pam.track(event: "page_view", payload: ["product_id": product.productID])
         
         if AppData.main.loginUser != nil {
             cells = [
@@ -87,6 +92,8 @@ extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSourc
             MockAPI.main.addToCart(product: product)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "cartChange"), object: nil)
             self.navigationController?.popViewController(animated: true)
+            
+            Pam.track(event: "add_to_cart", payload: ["product_id": product.productID])
         }))
         
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { _ in
