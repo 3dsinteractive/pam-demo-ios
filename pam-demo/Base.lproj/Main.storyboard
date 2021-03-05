@@ -435,6 +435,108 @@
             </objects>
             <point key="canvasLocation" x="-917.39130434782612" y="1638.6160714285713"/>
         </scene>
+        <!--Payment View Coltroller-->
+        <scene sceneID="X4B-HP-wfe">
+            <objects>
+                <viewController storyboardIdentifier="PaymentViewColtroller" id="t58-gF-q0p" customClass="PaymentViewColtroller" customModule="pam_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lFJ-nz-7Ci">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Veryfy by Black Market" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xac-Yy-gvh">
+                                <rect key="frame" x="102.5" y="88" width="209" height="25.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select your payment method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fvi-dq-8LY">
+                                <rect key="frame" x="71" y="173.5" width="272" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.94901960780000005" green="0.1225261555" blue="0.010226163" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                                <color key="highlightedColor" red="0.94901960780000005" green="0.1225261555" blue="0.010226163" alpha="0.84999999999999998" colorSpace="calibratedRGB"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="kidney_icon" translatesAutoresizingMaskIntoConstraints="NO" id="RFk-rb-DIH">
+                                <rect key="frame" x="171.5" y="224.5" width="71" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="71" id="JN3-aO-qJZ"/>
+                                    <constraint firstAttribute="height" constant="105" id="dbQ-ZF-UCD"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="credit-card" translatesAutoresizingMaskIntoConstraints="NO" id="rKD-g4-z82">
+                                <rect key="frame" x="157" y="369.5" width="100" height="106"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Wz8-OM-Ujk"/>
+                                    <constraint firstAttribute="height" constant="106" id="YnN-YO-mUf"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio_checked" translatesAutoresizingMaskIntoConstraints="NO" id="LUl-YW-d5b">
+                                <rect key="frame" x="101.5" y="262" width="30" height="30"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="radio" translatesAutoresizingMaskIntoConstraints="NO" id="WJU-v4-rBQ">
+                                <rect key="frame" x="101.5" y="407.5" width="30" height="30"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CreditCard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OT-gk-Jm4">
+                                <rect key="frame" x="165.5" y="480.5" width="83" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kidney" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekB-Y3-eKp">
+                                <rect key="frame" x="181" y="334.5" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gxe-Ip-2gb">
+                                <rect key="frame" x="0.0" y="802" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="ogF-6o-s09"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <state key="normal" title="Pay">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickPay:" destination="t58-gF-q0p" eventType="touchUpInside" id="j4H-i5-dGi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="8bU-OP-mfa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="8bU-OP-mfa" firstAttribute="bottom" secondItem="gxe-Ip-2gb" secondAttribute="bottom" id="0pu-ji-TJ1"/>
+                            <constraint firstItem="WJU-v4-rBQ" firstAttribute="centerY" secondItem="rKD-g4-z82" secondAttribute="centerY" id="3oR-9k-lnM"/>
+                            <constraint firstItem="Xac-Yy-gvh" firstAttribute="centerX" secondItem="lFJ-nz-7Ci" secondAttribute="centerX" id="5YC-kx-i4H"/>
+                            <constraint firstItem="LUl-YW-d5b" firstAttribute="centerY" secondItem="RFk-rb-DIH" secondAttribute="centerY" id="9fq-jN-09L"/>
+                            <constraint firstItem="RFk-rb-DIH" firstAttribute="top" secondItem="Fvi-dq-8LY" secondAttribute="bottom" constant="30" id="OOD-Au-5wU"/>
+                            <constraint firstItem="4OT-gk-Jm4" firstAttribute="centerX" secondItem="lFJ-nz-7Ci" secondAttribute="centerX" id="RXd-fy-gVu"/>
+                            <constraint firstItem="WJU-v4-rBQ" firstAttribute="centerX" secondItem="LUl-YW-d5b" secondAttribute="centerX" id="U4h-ax-LBD"/>
+                            <constraint firstItem="gxe-Ip-2gb" firstAttribute="leading" secondItem="8bU-OP-mfa" secondAttribute="leading" id="Wxn-Fs-3dh"/>
+                            <constraint firstItem="Fvi-dq-8LY" firstAttribute="centerX" secondItem="lFJ-nz-7Ci" secondAttribute="centerX" id="c7w-qd-s0S"/>
+                            <constraint firstItem="8bU-OP-mfa" firstAttribute="trailing" secondItem="gxe-Ip-2gb" secondAttribute="trailing" id="doD-R2-g46"/>
+                            <constraint firstItem="rKD-g4-z82" firstAttribute="top" secondItem="RFk-rb-DIH" secondAttribute="bottom" constant="40" id="hks-nr-Jiv"/>
+                            <constraint firstItem="RFk-rb-DIH" firstAttribute="leading" secondItem="LUl-YW-d5b" secondAttribute="trailing" constant="40" id="jdz-Or-ffj"/>
+                            <constraint firstItem="4OT-gk-Jm4" firstAttribute="top" secondItem="rKD-g4-z82" secondAttribute="bottom" constant="5" id="kb0-zy-XJK"/>
+                            <constraint firstItem="ekB-Y3-eKp" firstAttribute="centerX" secondItem="lFJ-nz-7Ci" secondAttribute="centerX" id="ng9-xo-r6e"/>
+                            <constraint firstItem="ekB-Y3-eKp" firstAttribute="top" secondItem="RFk-rb-DIH" secondAttribute="bottom" constant="5" id="or9-Md-bD4"/>
+                            <constraint firstItem="RFk-rb-DIH" firstAttribute="centerX" secondItem="lFJ-nz-7Ci" secondAttribute="centerX" id="p22-hP-fQy"/>
+                            <constraint firstItem="Fvi-dq-8LY" firstAttribute="top" secondItem="Xac-Yy-gvh" secondAttribute="bottom" constant="60" id="pu9-O7-uvp"/>
+                            <constraint firstItem="Xac-Yy-gvh" firstAttribute="top" secondItem="8bU-OP-mfa" secondAttribute="top" constant="44" id="uUF-T3-X01"/>
+                            <constraint firstItem="rKD-g4-z82" firstAttribute="centerX" secondItem="lFJ-nz-7Ci" secondAttribute="centerX" id="vNi-8o-xwg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="method1Image" destination="RFk-rb-DIH" id="oSv-jm-6je"/>
+                        <outlet property="method1Radio" destination="LUl-YW-d5b" id="wfD-YW-8cf"/>
+                        <outlet property="method2Image" destination="rKD-g4-z82" id="7qc-TX-tjV"/>
+                        <outlet property="method2Radio" destination="WJU-v4-rBQ" id="ehP-vN-FEJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9up-iy-VFW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-43.478260869565219" y="1631.9196428571429"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="K4t-Ln-zU6">
             <objects>
@@ -685,6 +787,9 @@
                                 <state key="normal" title="Pay now">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="clickPayNow:" destination="xEO-Y8-QT1" eventType="touchUpInside" id="UFj-cp-JAW"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xea-KO-1H6">
                                 <rect key="frame" x="0.0" y="762" width="414" height="50"/>
@@ -692,7 +797,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="฿ 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cec-S4-z9t">
                                         <rect key="frame" x="377" y="12" width="32" height="26.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                                        <color key="textColor" systemColor="systemYellowColor"/>
+                                        <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2J-JU-atB">
@@ -744,11 +849,15 @@
     </scenes>
     <resources>
         <image name="arrow_right" width="11" height="15"/>
+        <image name="credit-card" width="297" height="241"/>
         <image name="fav" width="32" height="32"/>
         <image name="fav_active" width="32" height="32"/>
+        <image name="kidney_icon" width="158" height="234"/>
         <image name="lightbg" width="390" height="844"/>
         <image name="logo-text" width="211.5" height="64.5"/>
         <image name="no_login_big" width="150" height="150"/>
+        <image name="radio" width="30" height="30"/>
+        <image name="radio_checked" width="30" height="30"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -757,6 +866,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

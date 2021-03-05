@@ -18,6 +18,12 @@ class ShoppingCartViewController: UIViewController {
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(cartChange), name: NSNotification.Name(rawValue: "cartChange"), object: nil)
+    }
+    
+    @objc func cartChange(){
+        loadCart()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -38,6 +44,12 @@ class ShoppingCartViewController: UIViewController {
         tableView.reloadData()
     }
     
+    
+    @IBAction func clickPayNow(_ sender: Any) {
+        if let vc = storyboard?.instantiateViewController(identifier: "PaymentViewColtroller") as? PaymentViewColtroller {
+            present(vc, animated: true)
+        }
+    }
     
     
     func initView() {

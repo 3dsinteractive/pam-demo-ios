@@ -50,7 +50,7 @@ class HomeTabbarController: UITabBarController {
         let count = MockAPI.main.getCartCount()
         cart?.tabBarItem.badgeColor = UIColor.red
         if count < 1 {
-            cart?.tabBarItem.badgeValue = ""
+            cart?.tabBarItem.badgeValue = nil
         }else{
             cart?.tabBarItem.badgeValue = "\(count)"
         }

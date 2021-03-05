@@ -79,6 +79,11 @@ class MockAPI {
             cart[foundAt].quantity += 1
         }
     }
+    
+    func pay() {
+        cart = []
+    }
+    
 }
 
 
