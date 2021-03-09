@@ -14,25 +14,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBar.appearance().tintColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
-        Pam.enableLog()
-        try! Pam.initialize()
+        try! Pam.initialize(launchOptions: launchOptions, enableLog: true)
         
-        sleep(1)
+        Pam.listen("onToken"){ args in
+            if let token = args["token"] {
+                print("Token = ", token)
+            }
+        }
         
-        Pam.track(event: "app_launch")
+        Pam.listen("onMessage"){ noti in
+            print("onMessage")
+            print(noti)
+        }
+        
         return true
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = Pam.setDeviceToken(deviceToken: deviceToken)
+        Pam.setDeviceToken(deviceToken: deviceToken)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        if !Pam.setPushNotification(userInfo: userInfo, completionHandler: completionHandler) {
-            //This is not a push notification from PAM
+        let isNotNotificationFromPAM = Pam.didReceiveRemoteNotification(userInfo: userInfo,
+                                         fetchCompletionHandler: completionHandler)
+        
+        if isNotNotificationFromPAM {
+            //handle your own notification
+            completionHandler(.newData)
         }
         
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        print("application open url")
+        print(url)
+        print(options)
+        
+        return true
     }
     
     // MARK: UISceneSession Lifecycle

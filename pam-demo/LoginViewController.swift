@@ -19,6 +19,14 @@ class LoginViewController: UIViewController {
         emailField.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(clickEmail))
         emailField.addGestureRecognizer(gesture)
+        
+        Pam.listen("onMessage"){ noti in
+            let vc = UIAlertController.init(title: "Noti", message: "\(noti)", preferredStyle: .alert)
+            vc.addAction(UIAlertAction(title: "Close", style: .default))
+            self.present(vc, animated: true)
+        }
+        
+        Pam.appReady()
     }
     
     @objc func clickEmail() {
@@ -45,7 +53,7 @@ class LoginViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Pam.askNotificationPermission(mediaAlias: "ios-noti", options:  [.alert, .sound, .badge])
+        Pam.askNotificationPermission(mediaAlias: "ios-noti")
        
         
         Pam.track(event: "pageview", payload: ["pageName":"test"])
