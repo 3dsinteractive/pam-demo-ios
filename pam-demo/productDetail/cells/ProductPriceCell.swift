@@ -7,11 +7,9 @@
 
 import UIKit
 class ProductPriceCell: UITableViewCell {
-    
-    @IBOutlet weak var priceText: UILabel!
-    
+    @IBOutlet var priceText: UILabel!
+
     func setPrice(price: Int) {
         priceText.text = "฿ \(price)"
     }
-    
 }

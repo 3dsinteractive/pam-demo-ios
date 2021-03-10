@@ -5,60 +5,56 @@
 //  Created by narongrit kanhanoi on 4/3/2564 BE.
 //
 
-import UIKit
 import Nuke
+import UIKit
 
 class ShoppingCartViewController: UIViewController {
-    
-    
-    @IBOutlet weak var emptyCartText: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var totalPriceText: UILabel!
-    
-    var cart:[ProductModel] = []
+    @IBOutlet var emptyCartText: UILabel!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var totalPriceText: UILabel!
+
+    var cart: [ProductModel] = []
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         NotificationCenter.default.addObserver(self, selector: #selector(cartChange), name: NSNotification.Name(rawValue: "cartChange"), object: nil)
     }
-    
-    @objc func cartChange(){
+
+    @objc func cartChange() {
         loadCart()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
+
+    override func viewDidAppear(_: Bool) {
         loadCart()
     }
-    
+
     func loadCart() {
         cart = MockAPI.main.getCart()
-        
-        let total = cart.map{
+
+        let total = cart.map {
             $0.price * $0.quantity
-        }.reduce(0){ total, num in
+        }.reduce(0) { total, num in
             total + num
         }
-        
+
         totalPriceText.text = "฿ \(total)"
-        
+
         tableView.reloadData()
-        
+
         if cart.count < 1 {
             emptyCartText.isHidden = false
-        }else{
+        } else {
             emptyCartText.isHidden = true
         }
     }
-    
-    
-    @IBAction func clickPayNow(_ sender: Any) {
+
+    @IBAction func clickPayNow(_: Any) {
         if let vc = storyboard?.instantiateViewController(identifier: "PaymentViewColtroller") as? PaymentViewColtroller {
             present(vc, animated: true)
         }
     }
-    
-    
+
     func initView() {
         tabBarItem.title = "Cart"
         tabBarItem.image = UIImage(named: "cart_icon")
@@ -66,45 +62,42 @@ class ShoppingCartViewController: UIViewController {
 }
 
 extension ShoppingCartViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return cart.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath)
-        
-        if let cell = cell as? CartItemCell{
+
+        if let cell = cell as? CartItemCell {
             let product = cart[indexPath.row]
             cell.setProduct(product: product)
         }
-        
+
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+    func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return 170
     }
-    
 }
 
-class CartItemCell: UITableViewCell{
-    @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var productTitle: UILabel!
-    @IBOutlet weak var unitPrice: UILabel!
-    @IBOutlet weak var quantityText: UILabel!
-    @IBOutlet weak var totalPrice: UILabel!
-    
-    func setProduct(product:ProductModel) {
-        if let url = URL(string: product.image){
+class CartItemCell: UITableViewCell {
+    @IBOutlet var productImage: UIImageView!
+    @IBOutlet var productTitle: UILabel!
+    @IBOutlet var unitPrice: UILabel!
+    @IBOutlet var quantityText: UILabel!
+    @IBOutlet var totalPrice: UILabel!
+
+    func setProduct(product: ProductModel) {
+        if let url = URL(string: product.image) {
             Nuke.loadImage(with: url, into: productImage)
         }
         productTitle.text = product.title
         unitPrice.text = "฿ \(product.price)"
         quantityText.text = "x \(product.quantity)"
-        
+
         let total = product.price * product.quantity
         totalPrice.text = "฿ \(total)"
     }
-    
 }

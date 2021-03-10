@@ -7,10 +7,9 @@
 
 import UIKit
 
-class ProductDescriptionCell: UITableViewCell{
-    
-    @IBOutlet weak var descriptionText: UILabel!
-    
+class ProductDescriptionCell: UITableViewCell {
+    @IBOutlet var descriptionText: UILabel!
+
     func setDescription(text: String) {
         descriptionText.text = text
     }

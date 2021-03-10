@@ -15,4 +15,3 @@ struct ProductModel {
     var quantity: Int = 0
     var category: String
 }
-

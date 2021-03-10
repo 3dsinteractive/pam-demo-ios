@@ -7,29 +7,28 @@
 import Nuke
 import UIKit
 
-class ProductCell: UICollectionViewCell{
-    
-    @IBOutlet weak var productTitle: UILabel!
-    @IBOutlet weak var productImage: UIImageView!
-    @IBOutlet weak var productPrice: UILabel!
-    
-    @IBOutlet weak var favIcon: UIImageView!
-    
-    func setData(product: ProductModel?)  {
-        if let url = URL(string: product?.image ?? ""){
+class ProductCell: UICollectionViewCell {
+    @IBOutlet var productTitle: UILabel!
+    @IBOutlet var productImage: UIImageView!
+    @IBOutlet var productPrice: UILabel!
+
+    @IBOutlet var favIcon: UIImageView!
+
+    func setData(product: ProductModel?) {
+        if let url = URL(string: product?.image ?? "") {
             let req = ImageRequest(url: url)
             Nuke.loadImage(with: req, into: productImage)
         }
         productTitle.text = product?.title
         if let priceText = product?.price {
             productPrice.text = "฿ \(priceText)"
-        }else{
+        } else {
             productPrice.text = "-"
         }
-        
-        if product?.isFavorite == true{
+
+        if product?.isFavorite == true {
             favIcon.isHidden = false
-        }else{
+        } else {
             favIcon.isHidden = true
         }
     }

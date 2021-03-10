@@ -7,14 +7,13 @@
 
 import UIKit
 
-class ProductButtonCell: UITableViewCell{
-    
-    var onAddToCart: (()->Void)?
-    
-    @IBAction func clickAddToCart(_ sender: Any) {
+class ProductButtonCell: UITableViewCell {
+    var onAddToCart: (() -> Void)?
+
+    @IBAction func clickAddToCart(_: Any) {
         onAddToCart?()
     }
-    
+
     var productID = ""
     func setProductID(productID: String) {
         self.productID = productID

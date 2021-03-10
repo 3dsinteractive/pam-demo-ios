@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainNavigationController: UINavigationController{
+class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         overrideUserInterfaceStyle = .light
     }
