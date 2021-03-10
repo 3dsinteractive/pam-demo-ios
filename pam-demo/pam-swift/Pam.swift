@@ -300,7 +300,7 @@ class Pam: NSObject {
     }
 
     func didReceiveRemoteNotification(userInfo: [AnyHashable: Any], fetchCompletionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool {
-        if userInfo["_pam"] != nil {
+        if userInfo["pam"] != nil {
             if isAppReady {
                 dispatch("onMessage", data: userInfo)
             } else {
@@ -456,6 +456,7 @@ extension Pam: UNUserNotificationCenterDelegate {
     }
 
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
         if isAppReady {
             dispatch("onMessage", data: response.notification.request.content.userInfo)
         } else {
@@ -464,8 +465,8 @@ extension Pam: UNUserNotificationCenterDelegate {
 
         completionHandler()
     }
+    
 }
-
 
 protocol PamEvent{
     func getEvent() -> String
@@ -520,6 +521,44 @@ class TrackerQueueManger {
         }
     }
     
+}
+
+class PamNoti{
+    
+    var flex: String?
+    var pixel: String?
+    var url: String?
+    var title: String?
+    var message: String?
+    
+    static func create(noti: [AnyHashable: Any])->PamNoti?{
+        
+        if let pam = noti["pam"] as? [AnyHashable:Any] {
+            
+            let pamNoti = PamNoti()
+            pamNoti.flex = pam["flex"] as? String
+            pamNoti.pixel = pam["pixel"] as? String
+            pamNoti.url = pam["url"] as? String
+            
+            if let aps = noti["aps"] as? [AnyHashable: Any] {
+                if let alert = aps["alert"] as? [AnyHashable: Any] {
+                    pamNoti.title = alert["title"] as? String
+                    pamNoti.message = alert["body"] as? String
+                }
+            }
+            
+            return pamNoti
+        }
+        
+        return nil
+    }
+    
+    func markAsRead(){
+        if let url = URL(string: url ?? "") {
+            let sess = URLSession.shared
+            sess.dataTask(with: url).resume()
+        }
+    }
 }
 
 fileprivate class PAMHelper {

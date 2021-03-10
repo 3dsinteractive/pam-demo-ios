@@ -18,13 +18,7 @@ class LoginViewController: UIViewController {
         emailField.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(clickEmail))
         emailField.addGestureRecognizer(gesture)
-
-        Pam.listen("onMessage") { noti in
-            let vc = UIAlertController(title: "Noti", message: "\(noti)", preferredStyle: .alert)
-            vc.addAction(UIAlertAction(title: "Close", style: .default))
-            self.present(vc, animated: true)
-        }
-        
+    
         if let savedPerson = UserDefaults.standard.object(forKey: "login_user") as? Data {
             let decoder = JSONDecoder()
             if let user = try? decoder.decode(UserModel.self, from: savedPerson) {
@@ -32,10 +26,10 @@ class LoginViewController: UIViewController {
                 gotoHome()
             }
         }
-
+        
         Pam.appReady()
         
-        //let event = Pam.StandardEvent.PageView(pageURL: "xxx")
+        Pam.track(event: "page_view", payload: ["page_url":"boodabest://login", "page_title": "Login"])
     }
 
     @objc func clickEmail() {

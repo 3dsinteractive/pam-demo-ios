@@ -27,6 +27,12 @@ class MockAPI {
         return nil
     }
 
+    func findProduct(id: String) -> ProductModel? {
+        return products.filter{
+            $0.productID == id
+        }.first
+    }
+    
     func getProducts() -> [ProductModel] {
         return products
     }

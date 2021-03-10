@@ -15,6 +15,8 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         overrideUserInterfaceStyle = .light
+        
+        Pam.track(event: "page_view", payload: ["page_url":"boodabest://profile", "page_title": "My Profile"])
     }
 
     override func viewWillAppear(_ animated: Bool) {

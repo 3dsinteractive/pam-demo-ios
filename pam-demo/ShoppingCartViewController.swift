@@ -19,6 +19,9 @@ class ShoppingCartViewController: UIViewController {
         tableView.dataSource = self
 
         NotificationCenter.default.addObserver(self, selector: #selector(cartChange), name: NSNotification.Name(rawValue: "cartChange"), object: nil)
+        
+        
+        Pam.track(event: "page_view", payload: ["page_url":"boodabest://cart", "page_title": "Shopping cart"])
     }
 
     @objc func cartChange() {

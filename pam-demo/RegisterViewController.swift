@@ -18,6 +18,8 @@ class RegisterViewController: UIViewController {
         emailField.isUserInteractionEnabled = true
         let gesture = UITapGestureRecognizer(target: self, action: #selector(clickEmail))
         emailField.addGestureRecognizer(gesture)
+        
+        Pam.track(event: "page_view", payload: ["page_url":"boodabest://register", "page_title": "Register"])
     }
 
     @objc func clickEmail() {
