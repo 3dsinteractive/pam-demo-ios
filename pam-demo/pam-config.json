@@ -1,5 +1,6 @@
 {
   "pam-server": "https://stg.pams.ai/",
   "public-db-alias": "boodabest-public",
-  "login-db-alias": "boodabest-login"
+  "login-db-alias": "boodabest-login",
+  "enable-logs": true
 }

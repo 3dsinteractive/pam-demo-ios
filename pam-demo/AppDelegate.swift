@@ -21,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         Pam.listen("onMessage") { noti in
+        
             if let noti = PamNoti.create(noti: noti) {
+                
                 noti.markAsRead()
 
                 if let urlComponents = URLComponents(string: noti.url ?? "") {

@@ -211,10 +211,6 @@ class Pam: NSObject {
             "_session_id": getSessionID()
         ]
         
-        if let customer = custID ?? readValue(key: .custID) {
-            formField["customer"] = customer
-        }
-        
         let publicContact = publicContactID ?? readValue(key: .contactID)
         let loginContact = loginContactID ?? readValue(key: .loginContactID)
         
@@ -232,6 +228,9 @@ class Pam: NSObject {
 
         if isUserLogin() {
             formField["_database"] = config?.loginDBAlias ?? ""
+            if let customer = custID ?? readValue(key: .custID) {
+                formField["customer"] = customer
+            }
         } else {
             formField["_database"] = config?.publicDBAlias ?? ""
         }
@@ -239,7 +238,7 @@ class Pam: NSObject {
         body["form_fields"] = formField
 
         if isEnableLog {
-            print("\n\n🦄 PAM : POST Event = 🟢\(event)🟢")
+            print("\n\n🦄 PAM : POST Event = 🍀\(event)🍀")
             print("🦄 PAM : Payload")
             print("🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉\n",PAMHelper.prettify(dict: body), "\n🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉🍉\n\n")
         }
@@ -554,7 +553,7 @@ class PamNoti{
     }
     
     func markAsRead(){
-        if let url = URL(string: url ?? "") {
+        if let url = URL(string: pixel ?? "") {
             let sess = URLSession.shared
             sess.dataTask(with: url).resume()
         }
