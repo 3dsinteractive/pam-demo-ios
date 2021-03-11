@@ -139,11 +139,7 @@ class Pam: NSObject {
         }
     }
 
-    func askNotificationPermission(mediaAlias _: String) {
-        if isEnableLog {
-            print("🦄 PAM :  askNotificationPermission")
-        }
-
+    func askNotificationPermission() {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound, .badge]) { _, error in
             if let error = error {
@@ -439,8 +435,8 @@ extension Pam {
         return Pam.shared.didReceiveRemoteNotification(userInfo: userInfo, fetchCompletionHandler: fetchCompletionHandler)
     }
 
-    static func askNotificationPermission(mediaAlias: String) {
-        Pam.shared.askNotificationPermission(mediaAlias: mediaAlias)
+    static func askNotificationPermission() {
+        Pam.shared.askNotificationPermission()
     }
 
     static func appReady() {

@@ -241,7 +241,7 @@
         <!--Product Detail View Controller-->
         <scene sceneID="8aT-7I-bPN">
             <objects>
-                <viewController storyboardIdentifier="ProductDetailViewController" id="XED-7T-YsZ" customClass="ProductDetailViewController" customModule="pam_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProductDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="XED-7T-YsZ" customClass="ProductDetailViewController" customModule="pam_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UpA-16-BtZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

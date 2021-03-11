@@ -65,7 +65,6 @@ class HomeTabbarController: UITabBarController {
     }
     
     func openNoti(noti: PamNoti) {
-        
         guard let url = noti.url else {return}
         
         if let urlComponents = URLComponents(string: url) {
@@ -73,7 +72,8 @@ class HomeTabbarController: UITabBarController {
                 let params = urlComponents.extractQueryParams()
                 guard let productID = params["id"] else {return}
                 guard let product = MockAPI.main.findProduct(id: productID) else {return}
-                guard let vc = self.storyboard?.instantiateViewController(identifier: "ProductDetailViewController") as? ProductDetailViewController else {return}
+                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                guard let vc = storyboard.instantiateViewController(identifier: "ProductDetailViewController") as? ProductDetailViewController else {return}
                 vc.setProduct(product: product)
                 
                 noti.markAsRead()//Mark Noti as read.
@@ -93,7 +93,7 @@ class HomeTabbarController: UITabBarController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        Pam.askNotificationPermission(mediaAlias: "ios-noti")
+        Pam.askNotificationPermission()
         Pam.appReady()
     }
 }
