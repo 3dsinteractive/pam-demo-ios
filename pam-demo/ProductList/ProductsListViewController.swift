@@ -36,7 +36,7 @@ class ProductsListViewController: UIViewController {
         setLoginBarItem()
         NotificationCenter.default.addObserver(self, selector: #selector(onReloadProduct), name: NSNotification.Name(rawValue: "favoriteChange"), object: nil)
         
-        Pam.track(event: "page_view", payload: ["page_url":"boodabest://products", "page_title": "product_list"])
+        Pam.track(event: "page_view", payload: ["page_url":"boodabest://products", "page_title": "Product List"])
     }
     
     override func viewWillAppear(_ animated: Bool) {

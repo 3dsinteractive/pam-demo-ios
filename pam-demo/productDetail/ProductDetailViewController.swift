@@ -31,6 +31,10 @@ class ProductDetailViewController: UIViewController {
         tableView.estimatedRowHeight = 300
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        
+        Pam.track(event: "page_view", payload: ["page_url":"boodabest://product?id=\(product?.productID ?? "")", "page_title": "Product: \(product?.title ?? "")"])
+    }
     func setProduct(product: ProductModel) {
         self.product = product
 
