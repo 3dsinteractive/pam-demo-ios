@@ -33,7 +33,13 @@ class ProductDetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         
-        Pam.track(event: "page_view", payload: ["page_url":"boodabest://product?id=\(product?.productID ?? "")", "page_title": "Product: \(product?.title ?? "")"])
+        let payload = [
+            "page_url": "boodabest://product?id=\(product?.productID ?? "")",
+            "page_title": "Product: \(product?.title ?? "")",
+            "product_id": product?.productID ?? ""
+        ]
+        
+        Pam.track(event: "page_view", payload: payload)
     }
     func setProduct(product: ProductModel) {
         self.product = product
