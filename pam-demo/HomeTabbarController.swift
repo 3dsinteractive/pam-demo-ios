@@ -42,6 +42,8 @@ class HomeTabbarController: UITabBarController {
         viewControllers = controller
 
         NotificationCenter.default.addObserver(self, selector: #selector(cartChange), name: NSNotification.Name(rawValue: "cartChange"), object: nil)
+        
+        setupPamPushNotif()
     }
 
     @objc func cartChange() {
@@ -54,6 +56,32 @@ class HomeTabbarController: UITabBarController {
         }
     }
 
+    func setupPamPushNotif() {
+        Pam.listen("onPushNotification") { noti in
+            if let noti = PamNoti.create(noti: noti) {
+                self.openNoti(noti: noti)
+            }
+        }
+    }
+    
+    func openNoti(noti: PamNoti) {
+        
+        guard let url = noti.url else {return}
+        
+        if let urlComponents = URLComponents(string: url) {
+            if(urlComponents.host == "product") {
+                let params = urlComponents.extractQueryParams()
+                guard let productID = params["id"] else {return}
+                guard let product = MockAPI.main.findProduct(id: productID) else {return}
+                guard let vc = self.storyboard?.instantiateViewController(identifier: "ProductDetailViewController") as? ProductDetailViewController else {return}
+                vc.setProduct(product: product)
+                
+                noti.markAsRead()//Mark Noti as read.
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
@@ -62,5 +90,20 @@ class HomeTabbarController: UITabBarController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        Pam.askNotificationPermission(mediaAlias: "ios-noti")
+        Pam.appReady()
+    }
+}
+
+extension URLComponents{
+    func extractQueryParams() -> [String:String] {
+        var params:[String:String] = [:]
+        self.queryItems?.forEach {
+            params[$0.name] = $0.value
+        }
+        return params
     }
 }

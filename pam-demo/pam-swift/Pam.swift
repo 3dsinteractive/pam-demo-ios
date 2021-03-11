@@ -45,7 +45,7 @@ class Pam: NSObject {
     typealias ListenerCallBack = ([AnyHashable: Any]) -> Void
 
     private var onToken: [ListenerCallBack] = []
-    private var onMessage: [ListenerCallBack] = []
+    private var onPushNotification: [ListenerCallBack] = []
     private var onConsent: [ListenerCallBack] = []
 
     private var pendingNotification: [[AnyHashable: Any]] = []
@@ -104,8 +104,8 @@ class Pam: NSObject {
     func listen(_ event: String, callBack: @escaping ListenerCallBack) {
         if event.lowercased() == "ontoken" {
             onToken.append(callBack)
-        } else if event.lowercased() == "onmessage" {
-            onMessage.append(callBack)
+        } else if event.lowercased() == "onpushnotification" {
+            onPushNotification.append(callBack)
         } else if event.lowercased() == "onConsent" {
             onConsent.append(callBack)
         }
@@ -117,7 +117,7 @@ class Pam: NSObject {
             track(event: "app_launch")
             isAppReady = true
             pendingNotification.forEach {
-                dispatch("onMessage", data: $0)
+                dispatch("onPushNotification", data: $0)
             }
             pendingNotification = []
         }
@@ -128,9 +128,9 @@ class Pam: NSObject {
 
         if event.lowercased() == "ontoken" {
             channel = onToken
-        } else if event.lowercased() == "onmessage" {
-            channel = onMessage
-        } else if event.lowercased() == "onConsent" {
+        } else if event.lowercased() == "onpushnotification" {
+            channel = onPushNotification
+        } else if event.lowercased() == "onconsent" {
             channel = onConsent
         }
 
@@ -275,17 +275,12 @@ class Pam: NSObject {
     }
     
     func userLogin(custID: String) {
-        if isEnableLog {
-            print("\n🦄 PAM :  Login customer ID=\(custID)\n")
-        }
-
         saveValue(value: custID, key: .custID)
         self.custID = custID
     
-        if let pushToken = pushToken {
-            track(event: "login", payload: ["ios_notification": pushToken])
-        }else{
-            track(event: "login")
+        track(event: "login")
+        if let token = self.pushToken {
+            track(event: "save_push", payload: ["ios_notification": token])
         }
     }
 
@@ -293,7 +288,11 @@ class Pam: NSObject {
         if isEnableLog {
             print("🦄 PAM :  Logout")
         }
+        
         track(event: "logout", payload: ["_delete_media": ["ios_notification": ""]])
+        if let token = self.pushToken {
+            track(event: "save_push", payload: ["ios_notification": token])
+        }
         
         deleteLoginContactAfterPost = true
     }
@@ -301,7 +300,7 @@ class Pam: NSObject {
     func didReceiveRemoteNotification(userInfo: [AnyHashable: Any], fetchCompletionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool {
         if userInfo["pam"] != nil {
             if isAppReady {
-                dispatch("onMessage", data: userInfo)
+                dispatch("onPushNotification", data: userInfo)
             } else {
                 pendingNotification.append(userInfo)
             }
@@ -457,7 +456,7 @@ extension Pam: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         if isAppReady {
-            dispatch("onMessage", data: response.notification.request.content.userInfo)
+            dispatch("onPushNotification", data: response.notification.request.content.userInfo)
         } else {
             pendingNotification.append(response.notification.request.content.userInfo)
         }

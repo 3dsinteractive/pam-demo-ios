@@ -27,9 +27,6 @@ class LoginViewController: UIViewController {
             }
         }
         
-        Pam.appReady()
-        
-        Pam.track(event: "page_view", payload: ["page_url":"boodabest://login", "page_title": "Login"])
     }
 
     @objc func clickEmail() {
@@ -55,9 +52,8 @@ class LoginViewController: UIViewController {
     }
 
     override func viewDidAppear(_: Bool) {
-        Pam.askNotificationPermission(mediaAlias: "ios-noti")
-
-        Pam.track(event: "pageview", payload: ["pageName": "test"])
+        Pam.appReady()
+        Pam.track(event: "page_view", payload: ["page_url":"boodabest://login", "page_title": "Login"])
     }
 
     override func viewWillAppear(_ animated: Bool) {

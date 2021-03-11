@@ -20,40 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 
-        Pam.listen("onMessage") { noti in
-        
-            if let noti = PamNoti.create(noti: noti) {
-                
-                noti.markAsRead()
-
-                if let urlComponents = URLComponents(string: noti.url ?? "") {
-                    let host = urlComponents.host ?? ""
-                    if(host == "product") {
-                        let id = urlComponents.queryItems?.filter {
-                            $0.name == "id"
-                        }.first
-
-                        if let productID = id?.value {
-                            if let product = MockAPI.main.findProduct(id: productID) {
-                                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-                                if let vc = storyboard.instantiateViewController(identifier: "ProductDetailViewController") as? ProductDetailViewController {
-                                    vc.setProduct(product: product)
-
-                                    let viewController = UIApplication.shared.windows.first!.rootViewController as! MainNavigationController
-                                    viewController.pushViewController(vc, animated: true)
-                                }
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
-
         return true
     }
-    
-    
 
     func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Pam.setDeviceToken(deviceToken: deviceToken)
